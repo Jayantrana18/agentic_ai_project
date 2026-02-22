@@ -8,3 +8,7 @@ langgraph
 youtube-search-python
 youtube-search
 langchain_google_genai
+wikipedia
+ddgs
+youtube-search-python
+youtube-search
