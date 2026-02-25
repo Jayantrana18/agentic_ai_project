@@ -12,3 +12,4 @@ wikipedia
 ddgs
 youtube-search-python
 youtube-search
+Ipython
