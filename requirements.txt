@@ -1,0 +1,10 @@
+streamlit
+langchain
+langchain-community
+langchain-groq
+sentence-transformers
+faiss-cpu
+langgraph
+python-dotenv
+pypdf
+torch --index-url https://download.pytorch.org/whl/cpu
