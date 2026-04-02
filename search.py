@@ -34,22 +34,28 @@ Question:
 
 
 def check_medical_emergency(query: str):
-    emergency_keywords = [
-        "chest pain",
-        "heart attack",
-        "stroke",
-        "difficulty breathing",
-        "can't breathe",
-        "severe bleeding",
-        "unconscious",
-        "seizure",
-        "fainting",
-        "sudden weakness",
-        "severe head injury"
-    ]
+    llm = get_llm()
+    prompt = f"""
+You are an intelligent triage medical agent.
+Determine if the user's message indicates an ACTIVE medical emergency where they or someone else needs immediate help (e.g., "I am having a heart attack", "my chest hurts", "patient is bleeding").
 
-    query_lower = query.lower()
-    return any(keyword in query_lower for keyword in emergency_keywords)
+If the user is simply asking an informational, theoretical, or educational question (e.g., "how does a heart attack happen", "what is a stroke", "chest pain causes"), this is NOT an emergency.
+
+Respond ONLY with:
+YES
+or
+NO
+
+User message:
+{query}
+"""
+    try:
+        response = llm.invoke(prompt).content.strip().upper()
+        return response == "YES"
+    except Exception:
+        # Fallback to keyword check if LLM fails just to play it safe
+        emergency_keywords = ["chest pain", "heart attack", "stroke", "difficulty breathing", "severe bleeding"]
+        return any(k in query.lower() for k in emergency_keywords)
 
 
 def detect_symptom_query(query: str):
