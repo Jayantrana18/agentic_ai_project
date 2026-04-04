@@ -8,3 +8,4 @@ langgraph
 python-dotenv
 pypdf
 torch --index-url https://download.pytorch.org/whl/cpu
+langchain-huggingface
