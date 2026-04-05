@@ -5,6 +5,8 @@ from vectorstore import load_vectorstore
 from embedding import get_embedding_model
 from search import answer_query
 
+
+# just added for making some change in order to check the CI/CD 
 # Import our new database logging system
 from database import init_db, log_interaction, engine
 
@@ -129,4 +131,4 @@ with tab2:
             st.info("No queries found yet. Ask a question in the Chat Assistant tab to populate this dashboard!")
             
     except Exception as e:
-        st.error(f"Could not load an analytics table: {e}")
+        st.error(f"Could not load an analytics table: {e}")

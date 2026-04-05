@@ -1,7 +1,7 @@
-.git
-.gitignore
-__pycache__
+__pycache__/
 *.pyc
-*.pyo
-*.pyd
+venv/
 .env
+data/
+faiss_index/
+.git

@@ -2,22 +2,20 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
-# System deps (smaller + faster)
+# Install only needed deps
 RUN apt-get update && apt-get install -y \
-    build-essential \
     curl \
     ca-certificates \
-    && update-ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
 
-RUN pip install --upgrade pip setuptools wheel
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --upgrade pip
+RUN pip install --prefer-binary --no-cache-dir -r requirements.txt
 
+# Copy AFTER install (for caching)
 COPY . .
 
-# Create required dirs (important for your project)
 RUN mkdir -p data faiss_index
 
 EXPOSE 8501
